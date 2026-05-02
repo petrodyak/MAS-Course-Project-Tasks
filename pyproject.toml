@@ -1,0 +1,10 @@
+[project]
+name = "prj-20260430-134702-entity6-table-with-revenuelast2years"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
