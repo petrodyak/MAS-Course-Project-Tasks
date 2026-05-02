@@ -1,2 +1,3 @@
-# MAS-Course-Project-Tasks
-This is Repo for MAS course project Tasks that created by Pipelines
+# create Entity9 table
+
+Generated project ID: `prj_20260502_092740_create_entity9_table`

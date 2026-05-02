@@ -1,0 +1,10 @@
+[project]
+name = "prj-20260502-092740-create-entity9-table"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
