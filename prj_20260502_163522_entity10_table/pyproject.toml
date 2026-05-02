@@ -1,0 +1,10 @@
+[project]
+name = "prj-20260502-163522-entity10-table"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
