@@ -4,9 +4,11 @@ import sqlite3
 
 
 def ensure_db_schema(db_path: str) -> None:
-    """Create schema directly only for local dev/test safety.
+    """Ensure base schema for development/testing.
 
-    In production the preferred path is Alembic migrations via ensure_setup.
+    This project keeps table creation logic here for initial bootstrap.
+    Alembic migrations may be used additionally, but the schema must exist for
+    tests to run from scratch.
     """
 
     conn = sqlite3.connect(db_path)
