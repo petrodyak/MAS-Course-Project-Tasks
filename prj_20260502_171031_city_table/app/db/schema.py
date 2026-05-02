@@ -10,6 +10,8 @@ def ensure_db_schema(db_path: str) -> None:
     """
 
     conn = sqlite3.connect(db_path)
+    # Ensure FK constraints are enforced in SQLite.
+    conn.execute("PRAGMA foreign_keys = ON;")
     conn.row_factory = sqlite3.Row
     try:
         conn.execute(
