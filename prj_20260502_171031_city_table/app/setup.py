@@ -8,6 +8,34 @@ from app.db import ensure_db_schema
 # Ensure tests and runtime always have SQLite FK enforcement.
 
 
+def _ensure_businesses_table(db_path: str) -> None:
+    conn = sqlite3.connect(db_path)
+    try:
+        conn.row_factory = sqlite3.Row
+        conn.execute("PRAGMA foreign_keys = ON;")
+
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS businesses (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              name TEXT NOT NULL,
+              type TEXT NOT NULL,
+              city_id INTEGER NOT NULL,
+              description TEXT NULL,
+              established_year TEXT NULL,
+              CONSTRAINT fk_businesses_city_id FOREIGN KEY(city_id) REFERENCES city(id) ON DELETE CASCADE
+            );
+            """
+        )
+
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_businesses_city_id ON businesses(city_id);"
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
 def _ensure_district_table(db_path: str) -> None:
     conn = sqlite3.connect(db_path)
     try:
@@ -108,6 +136,7 @@ def ensure_setup(db_path: str, artifacts_path: str) -> None:
     ensure_db_schema(db_path)
     _ensure_district_table(db_path)
     _ensure_transport_system_tables(db_path)
+    _ensure_businesses_table(db_path)
 
     marker = Path(artifacts_path) / "setup_complete.txt"
     marker.write_text(f"ok:{db_path}", encoding="utf-8")
