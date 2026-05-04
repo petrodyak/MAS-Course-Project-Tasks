@@ -1,5 +1,5 @@
 [project]
-name = "prj-20260503-094303-setup-city"
+name = "prj-20260504-131318-create-city-domain6"
 version = "0.1.0"
 
 [tool.pytest.ini_options]
