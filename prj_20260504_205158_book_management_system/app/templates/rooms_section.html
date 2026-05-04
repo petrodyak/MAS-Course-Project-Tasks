@@ -1,0 +1,25 @@
+<section id="rooms">
+  <h2>Rooms</h2>
+  <table class="table table-sm">
+    <thead><tr><th>ID</th><th>Name</th><th>Description</th><th></th></tr></thead>
+    <tbody>
+      {% for r in rooms|default([]) %}
+      <tr>
+        <td>{{ r.room_id }}</td>
+        <td>{{ r.room_name }}</td>
+        <td>{{ r.room_description }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" hx-delete="rooms/{{ r.room_id }}" hx-ext="json-enc" hx-target="#message" hx-swap="innerHTML" hx-confirm="Delete room?">Delete</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Create room</h3>
+  <form hx-post="rooms" hx-ext="json-enc" hx-target="#message" class="row g-2">
+    <div class="col-md-3"><input class="form-control" name="room_name" placeholder="Name" required /></div>
+    <div class="col-md-6"><input class="form-control" name="room_description" placeholder="Description" required /></div>
+    <div class="col-md-3"><button class="btn btn-primary w-100" type="submit">Create</button></div>
+  </form>
+</section>

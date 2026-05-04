@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">Book Management System</h1>
+
+{% include 'rooms_section.html' %}
+<hr />
+{% include 'shelves_section.html' %}
+<hr />
+{% include 'books_section.html' %}
+
+<div id="message" class="mt-3"></div>
+{% endblock %}
