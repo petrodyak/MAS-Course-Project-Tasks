@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>CRUD UI (schema-driven)</h1>
+  <p class="text-muted">This UI lists tables present in the database.</p>
+  <div class="accordion" id="tables">
+    {% for t in tables %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading-{{ t }}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ t }}" aria-expanded="true">
+            {{ t }}
+          </button>
+        </h2>
+        <div id="collapse-{{ t }}" class="accordion-collapse collapse show" data-bs-parent="#tables">
+          <div class="accordion-body">
+            <table class="table table-sm table-striped">
+              <thead><tr>
+                {% if records[t] and records[t]|length > 0 %}
+                  {% for k in records[t][0].keys() %}<th>{{ k }}</th>{% endfor %}
+                {% endif %}
+              </tr></thead>
+              <tbody>
+                {% for r in records[t] %}
+                  <tr>
+                    {% for v in r.values() %}<td>{{ v }}</td>{% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+[project]
+name = "prj-20260505-004408-people-management-system-in-it-company"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
