@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Cities</h1>
+<div id="message"></div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      {% for k in (records[0].keys() if records else ['city_id','city_name']) %}
+      <th>{{ k }}</th>
+      {% endfor %}
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in records %}
+    <tr id="row-{{ r.city_id }}">
+      <td>{{ r.city_id }}</td>
+      <td>{{ r.city_name }}</td>
+      <td>{{ r.city_old_name or '' }}</td>
+      <td>{{ r.city_size_km2 or '' }}</td>
+      <td>{{ r.country or '' }}</td>
+      <td>{{ r.established_date or '' }}</td>
+      <td>
+        <button class="btn btn-sm btn-danger"
+          hx-delete="cities/{{ r.city_id }}"
+          hx-target="#row-{{ r.city_id }}"
+          hx-swap="outerHTML">
+          Delete
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

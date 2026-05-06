@@ -1,0 +1,10 @@
+[project]
+name = "prj-20260504-131318-create-city-domain6"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
